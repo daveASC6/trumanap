@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale-1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <title>Create an Account</title>
+
+        <!-- fonts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <!-- firebase -->
+        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-firestore.js" defer></script>
+        
+        <!-- css & js -->
+        <script src = "sign.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+        
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+
+        <!-- materialize -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        
+    </head>
+    <body>
+        <div class="signUp-div">
+            <form id="signUp-form">
+                <!-- Sign Up Form Title -->
+                <div class="row center-align">
+                    <h5>Sign Up</h5>
+                    <h6>Create a Truman Account.</h6>
+                </div>
+
+                <!-- First Name & Last Name -->
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="firstName_input" type="text" class="validate" required="" aria-required="true">
+                        <label for="firstName_input">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="lastName_input" type="text" class="validate" required="" aria-required="true">
+                        <label for="lastName_input">Last Name</label>
+                    </div>
+                </div>
+
+                <!-- Email Input -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email_input" type="email" class="validate" required="" aria-required="true">
+                        <label for="email_input">Email</label>
+                        <span class="helper-text" data-error="Email must include '@'" data-success="right"></span>
+                    </div>
+                </div>
+            
+                <!-- Password Input -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password_input" type="password" class="validate" required="" aria-required="true">
+                        <label for="password_input">Password</label>
+                    </div>
+                </div>
+                <p class="error pink-text center-align"></p>
+                <div class="row">
+                    <div class="col s12">Already have a Truman account? <a href="login.html">Click here</a> to login.</div>
+                </div>
+
+                <!-- Create Account Button -->
+                <div class="row">
+                    <div class="col s12 right-align"><button class="waves-effect waves-light btn" type="submit">Create Account</button></div>
+                </div>
+            </form>
+        </div>
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4 id="modalText">Account Successfully Created!</h4>
+                <a class="btn waves-effect waves-light" class="material-icons right" id="goToLogin" href="login.html">Login</a>
+            </div>
+        </div>
+    </body>
+</html>

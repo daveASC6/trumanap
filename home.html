@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Truman App</title>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine|Unica+One&display=swap">
+    <link rel="stylesheet" href="slide.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- firebase database stuff -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-firestore.js" defer></script>
+    <script src="slide.js" defer></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC2FBeP7eL5VYTkOgQjnA5sfIpDUcNq968",
+    authDomain: "truman-56fb2.firebaseapp.com",
+    databaseURL: "https://truman-56fb2.firebaseio.com",
+    projectId: "truman-56fb2",
+    storageBucket: "",
+    messagingSenderId: "497245308289",
+    appId: "1:497245308289:web:cbe7b06794993fb7"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+</head>
+<body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img src="download.jpg" width="60" height="40">
+            <a class="navbar-brand" href="#">Truman</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Options
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">About Us</a>
+                    <a class="dropdown-item" href="#">Help</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Contact</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Help</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">News Feed</a>
+                      </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color:green; border-color:black;">Search</button>
+              </form>
+            </div>
+          </nav>
+
+
+          <div id="wrapper">
+            <section class="slideshow" id="js-header">
+              
+              <div class="slideshow__slide js-slider-home-slide is-current" data-slide="1">
+                  <div class="slideshow__slide-background-parallax background-absolute js-parallax" data-speed="-1" data-position="top" data-target="#js-header">
+                      <div class="slideshow__slide-background-load-wrap background-absolute">
+                          <div class="slideshow__slide-background-load background-absolute">
+                              <div class="slideshow__slide-background-wrap background-absolute">
+                                  <div class="slideshow__slide-background background-absolute">
+                                      <div class="slideshow__slide-image-wrap background-absolute">
+                                          <div class="slideshow__slide-image background-absolute" style="background-image: url('https://images.pexels.com/photos/190537/pexels-photo-190537.jpeg?auto=compress&cs=tinysrgb&h=1080&w=1920');"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="slideshow__slide-caption">
+                      <div class="slideshow__slide-caption-text">
+                          <div class="container js-parallax" data-speed="2" data-position="top" data-target="#js-header">
+                              <h1 class="slideshow__slide-caption-title">Everything broken can be repaired</h1>
+                              <a class="slideshow__slide-caption-subtitle -load o-hsub -link" href="#">
+                                  <span class="slideshow__slide-caption-subtitle-label">See how</span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="slideshow__slide js-slider-home-slide is-next" data-slide="2">
+                  <div class="slideshow__slide-background-parallax background-absolute js-parallax" data-speed="-1" data-position="top" data-target="#js-header">
+                      <div class="slideshow__slide-background-load-wrap background-absolute">
+                          <div class="slideshow__slide-background-load background-absolute">
+                              <div class="slideshow__slide-background-wrap background-absolute">
+                                  <div class="slideshow__slide-background background-absolute">
+                                      <div class="slideshow__slide-image-wrap background-absolute">
+                                          <div class="slideshow__slide-image background-absolute" style="background-image: url('https://images.pexels.com/photos/110649/pexels-photo-110649.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920');"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="slideshow__slide-caption">
+                      <div class="slideshow__slide-caption-text">
+                          <div class="container js-parallax" data-speed="2" data-position="top" data-target="#js-header">
+                              <h1 class="slideshow__slide-caption-title">See through the field</h1>
+                              <a class="slideshow__slide-caption-subtitle -load o-hsub -link" href="#">
+                                  <span class="slideshow__slide-caption-subtitle-label">Learn more about</span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="slideshow__slide js-slider-home-slide is-prev" data-slide="3">
+                  <div class="slideshow__slide-background-parallax background-absolute js-parallax" data-speed="-1" data-position="top" data-target="#js-header">
+                      <div class="slideshow__slide-background-load-wrap background-absolute">
+                          <div class="slideshow__slide-background-load background-absolute">
+                              <div class="slideshow__slide-background-wrap background-absolute">
+                                  <div class="slideshow__slide-background background-absolute">
+                                      <div class="slideshow__slide-image-wrap background-absolute">
+                                          <div class="slideshow__slide-image background-absolute" style="background-image: url('https://images.pexels.com/photos/196666/pexels-photo-196666.jpeg?auto=compress&cs=tinysrgb&h=1080&w=1920');"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="slideshow__slide-caption">
+                      <div class="slideshow__slide-caption-text">
+                          <div class="container js-parallax" data-speed="2" data-position="top" data-target="#js-header">
+                              <h1 class="slideshow__slide-caption-title">Hey, take a time to relax!</h1>
+                              <a class="slideshow__slide-caption-subtitle -load o-hsub -link" href="#">
+                                  <span class="slideshow__slide-caption-subtitle-label">Everybody needs</span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="c-header-home_footer">
+                  <div class="o-container">
+                      <div class="c-header-home_controls -nomobile o-button-group">
+                          <div class="js-parallax is-inview" data-speed="1" data-position="top" data-target="#js-header">
+                              <button class="o-button -white -square -left js-slider-home-button js-slider-home-prev" type="button">
+                                  <span class="o-button_label">
+                                      <svg class="o-button_icon" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-prev"></use></svg>
+                                  </span>
+                              </button>
+                              <button class="o-button -white -square js-slider-home-button js-slider-home-next" type="button">
+                                  <span class="o-button_label">
+                                      <svg class="o-button_icon" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-next"></use></svg>
+                                  </span>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+             
+              
+            </section>
+          <div>
+            
+          <svg xmlns="http://www.w3.org/2000/svg">
+              <symbol viewBox="0 0 18 18" id="arrow-next">
+                  <path id="arrow-next-arrow.svg" d="M12.6,9L4,17.3L4.7,18l8.5-8.3l0,0L14,9l0,0l-0.7-0.7l0,0L4.7,0L4,0.7L12.6,9z"/>
+              </symbol>
+              <symbol viewBox="0 0 18 18" id="arrow-prev">
+                  <path id="arrow-prev-arrow.svg" d="M14,0.7L13.3,0L4.7,8.3l0,0L4,9l0,0l0.7,0.7l0,0l8.5,8.3l0.7-0.7L5.4,9L14,0.7z"/>
+              </symbol>
+          </svg>
+
+            
+              
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">© 2019 Copyright:
+                  <a href ="file:///C:/Users/ASCStudent/Documents/trumanap/home.html"> Truman.com</a>
+                  <p><a href="nicholasr2003@gmail.com">nicholasr2003@gmail.com</a> and <a href="daveurlajide004@gmail.com"> daveurlajide004@gmail.com </a></p>
+                </div>
+                <!-- Copyright -->
+                      
+          
+    
+</body>
+</html>
